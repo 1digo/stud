@@ -1,20 +1,17 @@
-<div class="container-fluid">
-  <h1>Try</h1>
-  <form #numForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
-    <div class="input-group flex-nowrap form-group">
-      <input type="text" #num1="ngModel" name="num1" [class.is-invalid]="num1.invalid && num1.touched"
-             pattern="^-?[0-9]\d*(\.\d+)?$" class="form-control" placeholder="0" required  [(ngModel)]="numModel.num1">
-      <input type="text" #num2="ngModel" name="num2" [class.is-invalid]="num2.invalid && num2.touched"
-             pattern="^-?[0-9]\d*(\.\d+)?$" class="form-control" placeholder="0" required name="num2" [(ngModel)]="numModel.num2">
-      <input type="text" #num3="ngModel" name="num3" [class.is-invalid]="num3.invalid && num3.touched"
-             pattern="^-?[0-9]\d*(\.\d+)?$" class="form-control" placeholder="0" required name="num3" [(ngModel)]="numModel.num3">
-      <input type="text" #num4="ngModel" name="num4" [class.is-invalid]="num4.invalid && num4.touched"
-             pattern="^-?[0-9]\d*(\.\d+)?$" class="form-control" placeholder="0" required name="num4" [(ngModel)]="numModel.num4">
-      <input type="text" #num5="ngModel" name="num5" [class.is-invalid]="num5.invalid && num5.touched"
-             pattern="^-?[0-9]\d*(\.\d+)?$" class="form-control" placeholder="0" required name="num5" [(ngModel)]="numModel.num5">
-      <input type="text" #num6="ngModel" name="num6" [class.is-invalid]="num6.invalid && num6.touched"
-             pattern="^-?[0-9]\d*(\.\d+)?$" class="form-control" placeholder="0" required name="num6" [(ngModel)]="numModel.num6">
-    </div>
-    <button [disabled]="numForm.form.invalid" type="submit" class="btn btn-primary">Добавить</button>
-  </form>
-</div>
+
+<form [formGroup]="participantsForm" class="formGroup"  >
+  <ul formArrayName="num">
+    <li *ngFor="let item of participantsForm.controls.num.controls; let i = index">
+      <input type="text" formControlName="{{i}}" required pattern='^-?[0-9]\d*(\.\d+)?$'
+             [class.is-invalid]="item.invalid && item.touched">
+      <button  (click)="remove(i)"   class="remove" >Remove</button>
+      <div *ngIf="(item.touched || item.dirty) && item.invalid">
+        <p>Должны быть только числа</p>
+      </div>
+    </li>
+  </ul>
+  <button  (click)="Confirm(participantsForm.controls['num'].value)" [disabled]="!participantsForm.valid" class="Confirm" >Generate pdf</button>
+  <button  (click)="Confirm(participantsForm.controls['num'].value)" [disabled]="!participantsForm.valid" class="Confirm" >Get table</button>
+  <button  (click)="add()"   class="Add" > Add</button>
+</form>
+

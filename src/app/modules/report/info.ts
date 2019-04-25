@@ -1,10 +1,9 @@
-export class Info {
-  constructor(
-    public num1: number,
-    public num2: number,
-    public num3: number,
-    public num4: number,
-    public num5: number,
-    public num6: number
-  ) {}
+export interface Info {
+  num1: number;
+  num2: number;
+  num3: number;
+  num4: number;
+  num5: number;
+  num6: number;
+  num7: number;
 }

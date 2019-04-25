@@ -6,6 +6,7 @@ import { UiModule } from './ui/ui.module';
 import {ReportModule} from './modules/report/report.module';
 import {HomeModule} from './modules/home/home.module';
 import {HttpClientModule} from "@angular/common/http";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {HttpClientModule} from "@angular/common/http";
     UiModule,
     ReportModule,
     HomeModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
